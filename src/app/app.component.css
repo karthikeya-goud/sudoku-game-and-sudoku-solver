@@ -1,0 +1,30 @@
+
+
+input{
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    border-radius: 0px;
+    font-weight: bold;
+    border: 1px solid black;
+    font-size: 38px;
+}
+input:focus{
+    border: 2px solid #0d6efd;
+}
+input:hover{
+    cursor: pointer;
+}
+@media (max-width:576px) {
+    input{
+        width: 36px;
+        height: 36px;
+        font-size: 24px;
+    }
+    .buttons{
+        width: 20px;
+        height: 20px;
+        display: flex;
+        margin-left: 2px;
+    }
+}
