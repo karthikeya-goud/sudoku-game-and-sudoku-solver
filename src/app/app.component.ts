@@ -242,10 +242,59 @@ export class AppComponent{
     }
   }
 
+
+  checkUserRow():boolean{
+    for(let i=0;i<9;i++){
+      let s= new Set();
+      for(let j=0;j<9;j++){
+        let ele=this.uboard[i][j];
+        if(ele===0) continue;
+        if(s.has(ele)) return false;
+        s.add(ele);
+      }
+    }
+    return true;
+  }
+  checkUserCol():boolean{
+    for(let j=0;j<9;j++){
+      let s= new Set();
+      for(let i=0;i<9;i++){
+        let ele=this.uboard[i][j];
+        if(ele===0) continue;
+        if(s.has(ele)) return false;
+        s.add(ele);
+      }
+    }
+    return true;
+  }
+
+  checkUserBox():boolean{
+    for(let r=0;r<9;r+=3){
+      for(let c=0;c<9;c+=3){
+        let s= new Set();
+        for(let i=r;i<r+3;i++){
+          for(let j=c;j<c+3;j++){
+            let ele=this.uboard[i][j];
+            if(ele===0) continue;
+            if(s.has(ele)) return false;
+            s.add(ele);
+          }
+        }
+      }
+    }
+    return true;
+  }
+  isValidGivenSudoku():boolean{
+    return  this.checkUserRow() && this.checkUserCol() && this.checkUserBox();
+  }
   solveClick(){
-    if(!this.sudoku(this.uboard,0,0)){
-      alert("No solutions For this Board");
-    };
+    if(this.isValidGivenSudoku()){
+      if(!this.sudoku(this.uboard,0,0)){
+        alert("No solutions For this Board");
+      };
+    }else{
+      alert("Given Sudoku is not Given Correctly");
+    }
   }
   ngOnInit(): void {
     this.play();
